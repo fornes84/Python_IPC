@@ -1,0 +1,5 @@
+ls
+uname -a
+ls /
+id
+
