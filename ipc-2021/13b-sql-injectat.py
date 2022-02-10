@@ -19,10 +19,10 @@ parser.add_argument("cons",type=str,\
 
 args=parser.parse_args()
 # ------------------------------------------------------------------------------
-command = [f"psql -qtA -F',' -h 172.17.0.2 -U postgres training -c \"{args.cons}\""]    # On està la variable, pot fer més coses que una sentència, per exempel, DROP DATABASE ... CONCLUSIÓ: ERROR DE SEGURETAT BRUTAL!
+command = [f"psql -qtA -F',' -h 172.17.0.2 -U postgres training -c \"{args.cons}\""]    # On està la variable {args.cons}, pot fer més coses que una sentència "normal", per exempel, DROP DATABASE ... CONCLUSIÓ: ERROR DE SEGURETAT BRUTAL JA QUE L'USUARI TE PODER DE LIARLA !!!
 pipeData = Popen(command, stdout=PIPE, shell=True)
 
 for line in pipeData.stdout:
     print(line.decode("utf-8")[:-1])
-
+# Impremeix tota la linea menys ultim caract que es el salt de linea?
 exit(0)

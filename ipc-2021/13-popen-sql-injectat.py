@@ -21,9 +21,15 @@ parser.add_argument('sqlStatment', help='Sentència SQL a executar', metavar='se
 
 args = parser.parse_args()
 #----------------------------------------------------------
-cmd = "psql -qtA -F',' -h 172.17.0.2 -U postgres training"
-pipeData = Popen(cmd, shell = True, bufsize=0, universal_newlines=True, stdin=PIPE, stdout=PIPE, stderr=PIPE)   # shell = True --> el shell que és fa servir és /bin/sh, bufsize=0 --> sense buffer (no posi en memoria res, tot en directe), universal_newlines=True --> retorna string (text), stdin=PIPE --> write, stdout i stderr=PIPE read.
+cmd = "psql -qtA -F',' -h 127.0.0.1 -U postgres training"
+pipeData = Popen(cmd, shell = True, bufsize=0, universal_newlines=True, stdin=PIPE, stdout=PIPE, stderr=PIPE)   
+
+# shell = True --> el shell que és fa servir és /bin/sh, bufsize=0 --> sense buffer (no posi en memoria res, tot en directe), universal_newlines=True --> retorna string (text), stdin=PIPE --> write, stdout i stderr=PIPE read.
+
+# stdin=PIPE,stdout=PIPE, etc són per defecte
+
 pipeData.stdin.write("select * from oficinas;\n\q\n")   # El primer '\n' fa un enter per executar la sentència, '\q' surt del fitxer, i el segon '\n', confirma el '\q' per sortir.
+
 
 for line in pipeData.stdout:
   print(line, end="")

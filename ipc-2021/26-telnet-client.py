@@ -28,10 +28,10 @@ from subprocess import Popen, PIPE
 parser = argparse.ArgumentParser(description='Consulta el calendari ai un servidor')
 
 parser.add_argument("-p", help='Port on realitzar la consulta',type=int,\
-     dest="port", required=True)
+     dest="port", required=False, default="51000")
 
 parser.add_argument("-s", type=str, help="Servidor on realitzar la consulta",\
-     dest="server", required=True)
+     dest="server", required=False, default="localhost")
 
 args = parser.parse_args()
 # -------------------------------------------------
@@ -44,7 +44,7 @@ s.connect((args.server, args.port))
 # Fins que no li pengin el telèfon
 while True:
 	# Envia l'ordre a executar, si és un enter, tanca la connexió
-	cmd = input("telnet>")
+	cmd = input("telnet2>")
 	if cmd == '':
 		s.close()
 		break
@@ -53,7 +53,7 @@ while True:
 		s.send(cmd)
 	while True:
 		# Val les dades o val 'None'
-		data = s.recv(1024)
+		data = s.recv(2)
 		# Mostra les dades
 		print (str(data))
 		# Si rep la senyal de final, surt (man ascii -> 004)

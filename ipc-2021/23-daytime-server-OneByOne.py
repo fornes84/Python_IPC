@@ -28,7 +28,7 @@ s.listen(1)
 while True:
   conn, addr = s.accept()
   print("Connected by", addr)
-  command = ["date"]
+  command = ["id"]
   pipeData = Popen(command,stdout=PIPE)
   for line in pipeData.stdout:
     conn.send(line)

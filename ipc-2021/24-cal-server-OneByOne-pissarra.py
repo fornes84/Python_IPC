@@ -56,7 +56,7 @@ while True: # Bucle infinit (atendre connexions un darrera l'altre)
   conn, addr = s.accept()   # Guardem les variables conn i addr
   print("Connected by", addr)   # Printem
   llistaPeers.append(addr)  # Afegim les adreçes a la llista de connexions
-  command = "cal %d" % (ANY)    # Especifiquem la commanda que s'executarà (%d (integer), %s (string)--> any passat per argument)
+  command = "cal %d" %(ANY)    # Especifiquem la commanda que s'executarà (%d (integer), %s (string)--> any passat per argument)
   pipeData = Popen(command,shell=True,stdout=PIPE)  # Popen (shell=True --> es perquè funcioni)
   for line in pipeData.stdout: # Per cada línea
     conn.send(line)

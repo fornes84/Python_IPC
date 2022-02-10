@@ -13,6 +13,7 @@ HOST = ''
 PORT = 50001
 #PORT = 13
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 s.connect((HOST, PORT))
 
 while True: # Bucle perquè no sabem quan acabarà ja que no sabem quantes línees ens enviarà

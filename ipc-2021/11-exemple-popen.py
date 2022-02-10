@@ -17,11 +17,11 @@ parser.add_argument("ruta",type=str,\
 
 args=parser.parse_args()
 # -------------------------------------------------------
-command = ["ls", args.ruta]     # El primer argument serà 'ls', el segon, la ruta
+command = ["ls", args.ruta]     # Depositem en forma de tupla un primer argument q serà 'ls', i un segon, qserà la ruta
 #command = ["who"]
 pipeData = Popen(command, stdout=PIPE)      # Crea un tub (popen --> permet construir pipes (constructor)), a l'altre extrem, executa 'ls' de l'argument que li hem passat, 'stdout=PIPE' vol dir que 'stdout' del command, ha d'enviar-ho al tub (pipe)
 
 for line in pipeData.stdout:    # Llegeix cada línea dins del stdout del 'pipe' i la printa
     print(line.decode("utf-8"), end="")
-
+# si no posesim decode no intepretaria els salts de linea i quedarien totes les lineas en série, tamé posaria 'b davant cada linea
 exit(0)

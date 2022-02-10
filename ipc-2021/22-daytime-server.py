@@ -18,7 +18,7 @@ s.bind((HOST,PORT))
 s.listen(1) # Escolta
 conn, addr = s.accept() # Accepta la connexió
 print("Connected by", addr) # Rep la connexió
-command = ["date"]  # Li especifiquem el command que utiltizarem
+command = ["id"]  # Li especifiquem el command que utiltizarem
 pipeData = Popen(command,stdout=PIPE)   # Executem el popen
 
 for line in pipeData.stdout:    # Retornem les línees

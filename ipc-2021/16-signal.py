@@ -12,7 +12,8 @@
 # -------------------------------------
 # @ edt ASIX M06 Curs 2021-2022
 # Gener 2022
-# -------------------------------------
+# -------------------------------
+
 import sys, os, signal, argparse  
 
 parser = argparse.ArgumentParser(description=\

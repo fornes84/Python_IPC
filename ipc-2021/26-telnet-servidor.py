@@ -29,7 +29,7 @@ from subprocess import Popen, PIPE
 parser = argparse.ArgumentParser(description='Guarda ps ax a un fitxer')
 
 parser.add_argument("-p", type=int, help="Port on escoltar",\
-    default=50001, dest="port")
+    default=51000, dest="port")
 
 parser.add_argument("-d","--debug",action='store_true',default=False)
 
@@ -56,20 +56,20 @@ while True:
 		cmd = conn.recv(1024)		
 		if args.debug:
 			print ("Comanda: %s" % (cmd))
-		# Si no rep dades, li han penjat el telèfon, tanca la connexió.
-		if not cmd: 
-			if args.debug: 
-				print ("La connexió amb %s ha tancat" % (addr[0]))
-			conn.close()
-			break		
+        # Si no rep dades, li han penjat el telèfon, tanca la connexió
+        if not cmd:
+            if args.debug:
+                print ("La connexió amb %s ha tancat" % (addr[0]))
+                conn.close()
+                break		
 		# Executa la comanda
 		pipeData = Popen(cmd,shell=True, stdout=PIPE, stderr=PIPE)
 		# Per cada resultat del PIPE.stdout, l'envia
 		for line in pipeData.stdout:
 			if args.debug:
 				print ("Enviant: %s" %(line))
-			conn.send(line)		
-		# Per cada resultat del PIPE.stderr, l'envia
+                conn.send(line)		
+        # Per cada resultat del PIPE.stderr, l'envia
 		for line in pipeData.stderr:
 			if args.debug:
 				print ("Enviant: %s" %(line))
@@ -77,4 +77,4 @@ while True:
 		# Envia la senyal de final de comanda (man ascii -> 004)
 		conn.send(b'\x04')		
 
-sys.exit(0)
+sys.exit(0)  # AQUI NO ARRIBA MAI, DIRIA !!

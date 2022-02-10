@@ -19,6 +19,8 @@ args=parser.parse_args()
 #---------------------------------------------
 command= " psql -qtA -F',' -h 172.17.0.2 -U postgres training -c \"select * from clientes; \""
 pipeData = Popen(command,shell=True,stdout=PIPE)
+# Popen EXECUTA directament l'ordre command amb els seus arguments
+# sense shell=True PETA
 
 for line in pipeData.stdout:
     print(line.decode("utf-8"),end="")
