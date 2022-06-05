@@ -12,7 +12,7 @@ from subprocess import Popen, PIPE
 parser = argparse.ArgumentParser(description=\
         """Server One by One""")
 
-parser.add_argument("-p","--port", type=int, help="port al qual ens connectem",\
+parser.add_argument("-p","--port", type=int, help="port al qual ens connectem/escoltem ",\
      default=50001, dest="port")
 
 args=parser.parse_args()

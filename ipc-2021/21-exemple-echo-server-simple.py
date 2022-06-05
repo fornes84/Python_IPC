@@ -26,10 +26,10 @@ conn, addr = s.accept() # El servidor és queda clavat aquí fins que s'accepti 
 print("Connected by", addr) # Printem quan és faci la connexió
 
 while True: # Bucle infinit (per quan hi hagi dades)
-  data = conn.recv(1024)    # El client envia les dades, el servidor les rep i les torna
+  data = conn.recv(1024)    # El client envia les dades, el servidor les rep 
   if not data:  # if not data = s'ha tancat la connexió, el servidor finalitzarà (SERVIDOR!)
       break
-  conn.send(data)   # Tornem les dades
+  conn.send(data)   # Tornem les mateixes dades
 conn.close()    # Client tanca la connexió (CLIENT!)
 
 sys.exit(0) # Finalitzem programa
@@ -44,4 +44,4 @@ sys.exit(0) # Finalitzem programa
 # python3 21-exemple-echo-client-simple.py / telnet localhost 50001 (cada cop que escribim alguna cosa, ho rebota) / nc localhost 50001 
 
 # telnet i nc (netcat) són ordres clients de qualsevol transmissió (TCP, UDP)
-# nc -lk --> 'l' --> listen | 'k' --> Quan acaba una connexió, passa a la següent
+# nc -lk --> 'l' --> listen | 'k' --> Quan acaba una connexió, queda esperant a la següent

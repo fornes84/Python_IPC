@@ -20,7 +20,7 @@
 # el servidor tanca la connexió. El servidor escoltant a altres clients.
 # Implementar un servidor i un client telnet. Client i server fan un diàleg.
 # Cal un senyal de “yatà” Usem chr(4).
-# Si s’indica debug el server genera per stdout la traça de cada connexió.
+# Si s’indica debug el server generarà per stdout la traça de cada connexió.
 # -------------------------------------
 import sys, socket, os, argparse
 from subprocess import Popen, PIPE
@@ -56,19 +56,18 @@ while True:
 		cmd = conn.recv(1024)		
 		if args.debug:
 			print ("Comanda: %s" % (cmd))
-        # Si no rep dades, li han penjat el telèfon, tanca la connexió
-        if not cmd:
-            if args.debug:
-                print ("La connexió amb %s ha tancat" % (addr[0]))
-                conn.close()
-                break		
+		if not cmd:  # Si no rep més dades/comandes, li han penjat el telèfon, per tant tanca la connexió
+			if args.debug:
+				print ("La connexió amb %s ha tancat" % (addr[0]))
+			conn.close()
+			break		
 		# Executa la comanda
-		pipeData = Popen(cmd,shell=True, stdout=PIPE, stderr=PIPE)
+		pipeData = Popen(cmd,shell=True, stdout=PIPE, stderr=PIPE) # EXECUTA AQUI (A SERVIDOR LA COMANDA)
 		# Per cada resultat del PIPE.stdout, l'envia
 		for line in pipeData.stdout:
 			if args.debug:
 				print ("Enviant: %s" %(line))
-                conn.send(line)		
+				conn.send(line)		
         # Per cada resultat del PIPE.stderr, l'envia
 		for line in pipeData.stderr:
 			if args.debug:

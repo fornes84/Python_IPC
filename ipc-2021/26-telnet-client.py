@@ -53,7 +53,7 @@ while True:
 		s.send(cmd)
 	while True:
 		# Val les dades o val 'None'
-		data = s.recv(2)
+		data = s.recv(1024)
 		# Mostra les dades
 		print (str(data))
 		# Si rep la senyal de final, surt (man ascii -> 004)

@@ -15,21 +15,21 @@ PORT = 50007
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((HOST, PORT))
 s.listen(1)
-print(os.getpid())
-conns=[s] # afegim sempre el socket que escolta, el 1er
+print(os.getpid()) # donem el pid per poder matar el servidor, ja que no acaba mai.
+conns=[s] # afegim sempre el socket que escolta, el 1er (SINO NO VA, HA D'INICIALITZAR AMB UNA CONEIXö)
 while True: # forevver
     actius,x,y = select.select(conns,[],[]) # nomes interesa actius (es una llista)
     for actual in actius: # cada cop que entra una conexió aquesta val s
-        if actual == s:   # CLAU:
+        if actual == s:   # 
             conn, addr = s.accept() # TIPIC D?ACEPTAR UNA CONX ENTRANT
             print('Connected by', addr)
-            conns.append(conn) # la conexió actual l'afegim a conns
+            conns.append(conn) # la conexió actual l'afegim a conns pq poguem rebre dades d'ella
         else: # SI LA CONEX JA EXISTEIX, ESCOLTA DADES
             data = actual.recv(1024)
             if not data:
                 sys.stdout.write("Client finalitzat: %s \n" % (actual))
                 actual.close()
-                conns.remove(actual)
+                conns.remove(actual) # treiem de la llista la conexió finalitzada
             else:
                 actual.sendall(data) #  
                 #actual.sendall(b'chr(4)',socket.MSG_DONTWAIT)

@@ -12,17 +12,19 @@ import sys,argparse
 from subprocess import Popen, PIPE
 
 parser = argparse.ArgumentParser(description=\
-        """Consulta a la base de dades entrada per argument al prigrama.""")
+        """Consulta a la base de dades entrada per argument al programa.""")
 
 parser.add_argument("cons",type=str,\
         help="consulta a la base de dades training")
 
 args=parser.parse_args()
 # ------------------------------------------------------------------------------
-command = [f"psql -qtA -F',' -h 172.17.0.2 -U postgres training -c \"{args.cons}\""]    # On està la variable {args.cons}, pot fer més coses que una sentència "normal", per exempel, DROP DATABASE ... CONCLUSIÓ: ERROR DE SEGURETAT BRUTAL JA QUE L'USUARI TE PODER DE LIARLA !!!
+command = [f"psql -qtA -F',' -h 172.17.0.2 -U postgres training -c \"{args.cons}\""]    ç
+# On està la variable {args.cons}, l'usuari pot fer més coses que una sentència "normal", per exemple, DROP DATABASE 
+# .. CONCLUSIÓ: ERROR DE SEGURETAT BRUTAL JA QUE L'USUARI TE PODER DE LIARLA !!!
 pipeData = Popen(command, stdout=PIPE, shell=True)
 
 for line in pipeData.stdout:
     print(line.decode("utf-8")[:-1])
-# Impremeix tota la linea menys ultim caract que es el salt de linea?
+# Impremeix tota la linea menys ultim caract que es el fi de transm ?
 exit(0)

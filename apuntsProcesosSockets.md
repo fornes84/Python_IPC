@@ -50,7 +50,11 @@ isx48062351@i24:/tmp/m01$ lsof --> Llista els fitxers que tenim oberts
 
 TOT PROCÉS QUE EXECUTA EL SHELL HEREDA LES VARIABLES D'ENTORN.
 
+
+
 ### Pipes:
+
+
 * ordre1 | ordre2 --> El contingut de la ordre 1 passa a l'ordre 2
 **EX:** grep "10" /etc/passwd | wc -l
 
@@ -116,7 +120,11 @@ isx48062351@i24:/tmp/m01$ tail -f /tmp/dades --> '-f' de follow (cada cop que ex
 
 * **Documentació popen:** https://docs.python.org/3.8/library/subprocess.html
 
+
+
 ### Signals:
+
+
 **EXS:** kill -<num> $(pgrep <programa>)
 	 kill -<num> <PID>
          jobs --> per veure el jobs actius
@@ -140,7 +148,11 @@ isx48062351@i24:/tmp/m01$ tail -f /tmp/dades --> '-f' de follow (cada cop que ex
 * 18 - SIGCONT (Senyal que li demana al procés que continuï --> equivalent a CTRL + Q)
 * 19 - SIGSTOP (Senyal que para el procés --> equivalent a CTRL + S / CTRL + Z)
 
+
+
 ### Forks:
+
+
 **EX:** Programa base:
 
 * codi
